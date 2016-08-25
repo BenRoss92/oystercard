@@ -14,4 +14,8 @@ attr_reader :current_journey
     @current_journey = @journey_class.new(entry_station)
   end
 
+  def finish(exit_station)
+    @current_journey = @current_journey.finish(exit_station)
+  end
+
 end

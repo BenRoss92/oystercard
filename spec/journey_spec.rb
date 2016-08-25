@@ -4,7 +4,8 @@ describe Journey do
 
   let(:entry_station) { double :entry_station }
   let(:exit_station) { double :exit_station }
-  let(:new_journey) {described_class.new(entry_station: entry_station)}
+  let(:journey) {described_class.new(entry_station: entry_station)}
+
 
 
   context 'when no entry station' do
@@ -24,15 +25,18 @@ describe Journey do
   describe 'when touched in and out' do
 
     before(:each) do
-      new_journey.finish(exit_station)
+      journey.finish(exit_station)
     end
 
       it 'remembers a full journey' do
-        expect(new_journey.journey).to include(:entry_station => entry_station, :exit_station => exit_station)
+        expect(journey.journey).to include(:entry_station => entry_station, :exit_station => exit_station)
       end
 
       it 'should deduct minimum fare' do
-        expect(new_journey.fare).to eq(Journey::MIN_FARE)
+        expect(journey.fare).to eq(Journey::MIN_FARE)
       end
    end
+
+
+
 end

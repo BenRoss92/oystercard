@@ -1,5 +1,5 @@
 require_relative 'journey'
-require_relative 'station'
+require_relative 'journey_log'
 
 class Oystercard
 
@@ -10,7 +10,7 @@ class Oystercard
   def initialize(balance = 0)
     @balance = balance
     @journeys = []
-    @current_journey = nil
+    @current_journey = JourneyLog.new
   end
 
   def top_up(amount)
@@ -20,8 +20,8 @@ class Oystercard
 
   def touch_in(station)
     fail "balance less than £#{Journey::MIN_FARE} - please top up" if balance < Journey::MIN_FARE
-    finish_journey if current_journey
-    @current_journey = Journey.new(entry_station: station)
+    #finish_journey if current_journey
+    @current_journey.start(station)
   end
 
   def touch_out(station)
