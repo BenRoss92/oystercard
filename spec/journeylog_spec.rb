@@ -25,8 +25,8 @@ describe Journeylog do
   end
 
   it 'creates a new journey with the entry station' do
-      subject.start(start_station)
-      expect(journey).to receive(:new).with(start_station)
+    expect(journey_class).to receive(:new).with(start_station)
+    subject.start(start_station)
   end
 
 end
